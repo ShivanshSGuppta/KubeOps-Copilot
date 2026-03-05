@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="grid md:grid-cols-3 gap-4">
+  <div class="card md:col-span-2">
+    <h2 class="h2">What this MVP does</h2>
+    <ul class="list-disc pl-5 text-slate-200 text-sm space-y-1">
+      <li>Explore namespaces, pods, events, and pod logs.</li>
+      <li>Run natural-language queries that map to allowlisted read actions.</li>
+      <li>Maintain an audit log (SQLite) of every query and action.</li>
+    </ul>
+
+    <div class="mt-4 flex flex-wrap gap-2">
+      <a class="btn" href="/cluster">Open Cluster Overview</a>
+      <a class="btn" href="/nlq">Try NL Query</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2 class="h2">Safety Gates</h2>
+    <ul class="text-sm text-slate-200 space-y-2">
+      <li><span class="pill">Read-only</span> No delete/apply/exec/patch endpoints.</li>
+      <li><span class="pill">Allowlist</span> Only known actions execute.</li>
+      <li><span class="pill">Audit</span> Every request is recorded.</li>
+    </ul>
+
+    <div class="mt-4 text-xs text-slate-400">
+      Mode: <span class="font-semibold text-slate-200">{{ settings.k8s_mode }}</span>
+      <br/>Enable real cluster mode via <code class="code">K8S_MODE=real</code>.
+    </div>
+  </div>
+</div>
+
+<div class="card mt-4">
+  <h2 class="h2">Getting started</h2>
+  <div class="text-sm text-slate-200">
+    Use <code class="code">K8S_MODE=mock</code> to run without a cluster. Switch to <code class="code">real</code> to connect via kubeconfig.
+  </div>
+</div>
+{% endblock %}

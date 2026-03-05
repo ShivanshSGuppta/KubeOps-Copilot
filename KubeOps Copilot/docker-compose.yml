@@ -1,0 +1,17 @@
+services:
+  kubeops:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      - K8S_MODE=${K8S_MODE:-mock}
+      - KUBECONFIG=${KUBECONFIG:-}
+      - USE_OLLAMA=${USE_OLLAMA:-0}
+      - OLLAMA_URL=${OLLAMA_URL:-http://localhost:11434}
+      - OLLAMA_MODEL=${OLLAMA_MODEL:-llama3.1}
+      - DATA_DIR=/app/data
+    volumes:
+      - ./data:/app/data
+      - ./sample:/app/sample:ro
+      # Uncomment to mount your kubeconfig into the container (real mode)
+      # - ~/.kube:/root/.kube:ro

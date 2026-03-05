@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card">
+  <div class="text-xl font-semibold">Help</div>
+  <div class="mt-2 text-slate-300 leading-relaxed">
+    <p><b>KubeOps Copilot</b> is a read-only Kubernetes operations assistant built for safe triage.</p>
+    <ul class="list-disc ml-6 mt-2">
+      <li><b>Mock mode</b> (default): uses sample data so the app works without a cluster.</li>
+      <li><b>Real mode</b>: connects to a Kubernetes cluster using your kubeconfig (still read-only).</li>
+    </ul>
+
+    <div class="mt-4">
+      <div class="font-semibold">Safety model</div>
+      <ul class="list-disc ml-6 mt-2">
+        <li>Only allowlisted, read-only actions are executed.</li>
+        <li>User input is sanitized and validated before any action runs.</li>
+        <li>Every NL query is written to an audit log.</li>
+      </ul>
+    </div>
+
+    <div class="mt-4">
+      <div class="font-semibold">Try these natural language queries</div>
+      <ul class="list-disc ml-6 mt-2">
+        <li>show namespaces</li>
+        <li>pods in kube-system</li>
+        <li>failing pods in default</li>
+        <li>events in kube-system</li>
+      </ul>
+    </div>
+
+    <div class="mt-4 text-sm text-slate-400">
+      Mode: <span class="badge">{{ settings.k8s_mode|upper }}</span>
+    </div>
+  </div>
+</div>
+{% endblock %}

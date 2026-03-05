@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card">
+  <h2 class="h2">Audit Log</h2>
+  <div class="text-xs text-slate-400 mt-1">Last {{ rows|length }} events (newest first). Stored in SQLite under <code class="code">{{ settings.data_dir }}</code>.</div>
+
+  <div class="mt-3 space-y-2">
+    {% for r in rows %}
+      <div class="row items-start">
+        <div class="min-w-[120px] text-xs text-slate-400">{{ r.ts }}</div>
+        <div class="flex-1">
+          <div class="text-sm text-slate-200"><span class="pill">{{ r.status }}</span> <span class="text-slate-400">{{ r.route }}</span></div>
+          <div class="text-xs text-slate-300 mt-1"><span class="font-semibold">prompt:</span> {{ r.prompt }}</div>
+          <div class="text-xs text-slate-300"><span class="font-semibold">action:</span> {{ r.action }}</div>
+          {% if r.details %}
+            <div class="text-xs text-red-300"><span class="font-semibold">details:</span> {{ r.details }}</div>
+          {% endif %}
+        </div>
+      </div>
+    {% endfor %}
+    {% if rows|length == 0 %}
+      <div class="text-sm text-slate-300">No audit events yet.</div>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

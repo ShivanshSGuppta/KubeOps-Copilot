@@ -1,0 +1,108 @@
+{
+  "namespaces": [
+    "default",
+    "kube-system",
+    "monitoring"
+  ],
+  "nodes": [
+    {
+      "name": "node-a",
+      "status": "Ready",
+      "kubeletVersion": "v1.29.3"
+    },
+    {
+      "name": "node-b",
+      "status": "Ready",
+      "kubeletVersion": "v1.29.3"
+    }
+  ],
+  "pods": {
+    "default": [
+      {
+        "name": "web-7c9d8f6b5c-abc12",
+        "status": "Running",
+        "restarts": 0,
+        "node": "node-a",
+        "age": "3d"
+      },
+      {
+        "name": "api-6b9f7cdd66-qwe45",
+        "status": "CrashLoopBackOff",
+        "restarts": 7,
+        "node": "node-b",
+        "age": "5h"
+      }
+    ],
+    "kube-system": [
+      {
+        "name": "coredns-558bd4d5db-1l2m3",
+        "status": "Running",
+        "restarts": 1,
+        "node": "node-a",
+        "age": "12d"
+      },
+      {
+        "name": "metrics-server-7b9f4d7d88-zzz99",
+        "status": "Running",
+        "restarts": 0,
+        "node": "node-b",
+        "age": "12d"
+      }
+    ],
+    "monitoring": [
+      {
+        "name": "prometheus-k8s-0",
+        "status": "Running",
+        "restarts": 0,
+        "node": "node-a",
+        "age": "9d"
+      },
+      {
+        "name": "grafana-5d8c6f7d9c-hjk88",
+        "status": "Running",
+        "restarts": 0,
+        "node": "node-b",
+        "age": "9d"
+      }
+    ]
+  },
+  "logs": {
+    "default/api-6b9f7cdd66-qwe45": [
+      "2026-03-03T18:01:12Z ERROR: failed to connect to database: connection refused",
+      "2026-03-03T18:01:12Z INFO: retrying in 2s",
+      "2026-03-03T18:01:14Z ERROR: failed to connect to database: connection refused",
+      "2026-03-03T18:01:14Z FATAL: startup aborted"
+    ],
+    "default/web-7c9d8f6b5c-abc12": [
+      "2026-03-03T18:00:00Z INFO: server started on :8080",
+      "2026-03-03T18:00:03Z INFO: healthcheck OK"
+    ]
+  },
+  "events": {
+    "default": [
+      {
+        "type": "Warning",
+        "reason": "BackOff",
+        "message": "Back-off restarting failed container api",
+        "involvedObject": "api-6b9f7cdd66-qwe45",
+        "time": "5m"
+      },
+      {
+        "type": "Normal",
+        "reason": "Pulled",
+        "message": "Successfully pulled image \"example/api:1.2.3\"",
+        "involvedObject": "api-6b9f7cdd66-qwe45",
+        "time": "20m"
+      }
+    ],
+    "kube-system": [
+      {
+        "type": "Normal",
+        "reason": "Started",
+        "message": "Started container coredns",
+        "involvedObject": "coredns-558bd4d5db-1l2m3",
+        "time": "12d"
+      }
+    ]
+  }
+}

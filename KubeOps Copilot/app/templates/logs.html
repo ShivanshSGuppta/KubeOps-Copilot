@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card">
+  <div class="flex items-center justify-between">
+    <div>
+      <h2 class="h2">Logs • {{ namespace }}/{{ pod }}</h2>
+      <div class="text-xs text-slate-400">Tail: {{ tail }} lines</div>
+    </div>
+    <div class="flex gap-2">
+      <a class="btn-sm" href="/namespaces/{{ namespace }}/pods/{{ pod }}/logs?tail=200">tail 200</a>
+      <a class="btn-sm" href="/namespaces/{{ namespace }}/pods/{{ pod }}/logs?tail=500">tail 500</a>
+      <a class="btn-sm" href="/namespaces/{{ namespace }}/pods">back</a>
+    </div>
+  </div>
+
+  <pre class="logbox mt-3">{% for line in lines %}{{ line }}
+{% endfor %}</pre>
+
+  {% if lines|length == 0 %}
+    <div class="text-sm text-slate-300 mt-3">No logs available.</div>
+  {% endif %}
+</div>
+{% endblock %}

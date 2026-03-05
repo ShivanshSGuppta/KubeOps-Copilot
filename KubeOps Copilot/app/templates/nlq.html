@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card">
+  <h2 class="h2">Natural Language Query</h2>
+  <div class="text-sm text-slate-300 mt-1">
+    Try: <span class="code">show pods in default</span>,
+    <span class="code">failing pods in default</span>,
+    <span class="code">logs for pod api-... in namespace default</span>,
+    <span class="code">events in kube-system</span>
+  </div>
+
+  <form id="nlqForm" class="mt-4 flex flex-col gap-2">
+    <input name="prompt" id="prompt" class="input" placeholder="Ask a read-only question about the cluster..." required />
+    <div class="flex gap-2">
+      <button class="btn" type="submit">Run</button>
+      <a class="btn-secondary" href="/cluster">Open Cluster</a>
+    </div>
+  </form>
+
+  <div id="nlqOut" class="mt-4 hidden">
+    <div class="text-sm text-slate-200 font-semibold">Result</div>
+    <pre id="nlqJson" class="logbox mt-2"></pre>
+  </div>
+</div>
+{% endblock %}

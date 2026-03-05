@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{{ title if title else "KubeOps Copilot" }}</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="/static/styles.css" />
+</head>
+<body class="bg-slate-950 text-slate-100">
+  <div class="max-w-6xl mx-auto px-4 py-6">
+    <div class="flex items-center justify-between gap-4">
+      <div>
+        <div class="text-2xl font-bold tracking-tight">KubeOps Copilot</div>
+        <div class="text-sm text-slate-300">Read-only Kubernetes Operations Assistant • Safety Gates • Audit Log</div>
+      </div>
+      <div class="text-right text-sm text-slate-300">
+        <div><span class="badge">{{ settings.k8s_mode|upper }}</span></div>
+      </div>
+    </div>
+
+    <nav class="mt-4 flex flex-wrap gap-2 text-sm">
+      <a class="navlink" href="/">Home</a>
+      <a class="navlink" href="/cluster">Cluster</a>
+      <a class="navlink" href="/namespaces">Namespaces</a>
+      <a class="navlink" href="/nlq">NL Query</a>
+      <a class="navlink" href="/audit">Audit</a>
+      <a class="navlink" href="/help">Help</a>
+      <a class="navlink" href="https://kubernetes.io/docs/home/" target="_blank" rel="noreferrer">Kubernetes Docs</a>
+    </nav>
+
+    <div class="mt-4">
+      {% block content %}{% endblock %}
+    </div>
+
+    <footer class="mt-10 text-xs text-slate-400">
+      <div class="border-t border-slate-800 pt-4">
+        Built for portfolio use. Read-only operations by design.
+      </div>
+    </footer>
+  </div>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
