@@ -1,6 +1,5 @@
 # KubeOps Copilot (Kubernetes Operations Assistant)
 
-![CI](https://github.com/<your-username>/<your-repo>/actions/workflows/ci.yml/badge.svg)
 
 A **read-only**, safety-first Kubernetes operations assistant you can run locally or in Docker. It is designed to **reduce time-to-triage** during incidents by making common cluster reads fast, consistent, and auditable.
 
@@ -22,14 +21,6 @@ A **read-only**, safety-first Kubernetes operations assistant you can run locall
 
 ---
 
-## Screenshots
-
-> These are placeholders in `assets/` so your GitHub page looks complete. Replace with real screenshots later.
-
-![Home](assets/screenshot-home.png)
-![NLQ](assets/screenshot-nlq.png)
-
----
 
 ## Features
 
